@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{page}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+        <style>
+            table, th, td{
+                padding: 10px;
+                text-align: center;
+                border: 1px solid red;
+            }
+
+            table {
+                width: 80%;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <!-- instead of start we can use other name -->
+        {% block start %} 
+        
+        {% endblock %}
+
+
+        <script>
+            console.log("Hey Django");
+
+        </script>
+    </body>
+</html>

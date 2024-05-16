@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{%block start%}
+<div class="mx-36 my-10 p-5 bg-white shadow-lg rounded">
+    <h2 class="text-2xl">Update Receipe</h2>
+    <hr class="mb-4 mt-2">
+
+    <div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label class="pt-4" for="name">Receipe name</label>
+                <br>
+                <input name="receipe_name" class="w-full mt-2 mb-6 p-2 box-border bg-gray-100 rounded" type="text" placeholder="receipe name" id="name" value="{{receipe.receipe_name}}" required>
+            </div>
+
+            <div>
+                <label class="pt-4" for="description">Receipe description</label>
+                <br>
+                <textarea name="receipe_description" class="w-full mt-2 mb-3 p-2 box-border bg-gray-100 rounded" type="text" placeholder="receipe description" id="description" required>{{receipe.receipe_description}}</textarea>
+            </div>
+
+            <div>
+                <label class="pt-4" for="image">Receipe image</label>
+                <input name="receipe_image" class="w-full bg-gray-100 mt-2 p-2" type="file" id="image" accept="image/*">
+            </div>
+
+            <div>
+                <input class="w-full mt-4 bg-blue-500 rounded py-2 cursor-pointer" type="submit">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

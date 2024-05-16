@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{%block start%}
+
+<div>
+    <div class="navbar bg-base-100 p-4">
+        <div class="navbar-start">
+          <h2 class="btn btn-ghost text-xl">Hello, {{request.user.first_name}} {{request.user.last_name}}</h2>
+        </div>
+        <div class="navbar-end">
+          <a class="btn" href="/login/">Logout</a>
+        </div>
+      </div>
+</div>
+
+
+<div class="mx-36 my-10 p-5 bg-white shadow-lg rounded">
+    <h2 class="text-2xl">Add Receipe</h2>
+    <hr class="mb-4 mt-2">
+
+    <div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label class="pt-4" for="name">Receipe name</label>
+                <br>
+                <input name="receipe_name" class="w-full mt-2 mb-6 p-2 box-border bg-gray-100 rounded" type="text" placeholder="receipe name" id="name" required>
+            </div>
+
+            <div>
+                <label class="pt-4" for="description">Receipe description</label>
+                <br>
+                <textarea name="receipe_description" class="w-full mt-2 mb-3 p-2 box-border bg-gray-100 rounded" type="text" placeholder="receipe description" id="description" required></textarea>
+            </div>
+
+            <div>
+                <label class="pt-4" for="image">Receipe image</label>
+                <input name="receipe_image" class="w-full bg-gray-100 mt-2 p-2" type="file" id="image" accept="image/*">
+            </div>
+
+            <div>
+                <input class="w-full mt-4 bg-blue-500 rounded py-2 cursor-pointer" type="submit">
+            </div>
+        </form>
+    </div>
+</div>
+<hr class="mb-4">
+<div class="mx-[20%]">
+    <form>
+        <div>
+            <label class="pt-4 text-2xl" for="name">Search Receipe</label>
+            <br>
+            <input name="search_receipe" class="w-[71%] mt-2 mb-6 p-3 box-border bg-gray-100 rounded mr-[1%]" type="Search" placeholder="Search a receipe" id="">
+            
+            <button class="btn btn-primary w-[25%]">
+                Search
+            </button>
+        </div>
+    </form>
+</div>
+
+<hr>
+<div class="p-10">
+    <h2 class="text-2xl">{{result}}</h2>
+    <hr class="mb-4 mt-2">
+    
+    <table class="table border-2">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Receipe name</th>
+                <th scope="col">Receipe description</th>
+                <th scope="col">Receipe image</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for receipe in receipes%}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{receipe.receipe_name}}</td>
+                    <td>{{receipe.receipe_description}}</td>
+                    <td>
+                        <img class="w-32 h-auto" src="/media/{{receipe.receipe_image}}">
+                    </td>
+                    <td>
+                        <a href='update-receipe/{{receipe.id}}/' class='btn bg-blue-500'>Update</a>
+                        <br>
+                        <a href='delete-receipe/{{receipe.id}}/' class='mt-2 btn bg-red-500'>Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

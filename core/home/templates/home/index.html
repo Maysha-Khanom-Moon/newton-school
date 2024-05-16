@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block start%}
+
+        <h1>Hey I am a Django Server.</h1>
+        <hr>
+        <ul>
+            <li> <a href="/contact/">Contact</a> </li>
+            <li> <a href="/about/">About</a> </li>
+        </ul>
+        <hr>
+        <p>Hey this is coming from Django server</p>
+        <hr>
+        <h3 style="color:red;">Hope you are loving it :)</h3>
+        <hr>
+        {{peoples}}
+
+        <table>
+            <tr>
+              <th>S. NO</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>can vote?</th>
+            </tr>
+            {% for people in peoples %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{people.name}}</td>
+                    <td>{{people.age}}</td>
+
+                    <td {% if people.age >= 18 %} style="background-color: green;" {% endif %}>
+                        {% if people.age >= 18 %}
+                            👍
+                        {% else %}
+                            👎
+                        
+                        {% endif %}
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+            <p>{{ text|truncatechars:80 }}</p>
+
+            <p>{{vegetables}}<p>     
+        
+            {% if 'cucumber' in vegetables%}
+                cucumber Available
+            {% elif 'Potato' in vegetables %}
+                Potato Available
+            {% else %}
+                Not Available
+            {% endif %}
+
+        {% endblock %}
