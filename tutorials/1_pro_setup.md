@@ -8,6 +8,9 @@
 3. start virtual environment: virtualenv env
     - will create a 'env' folder
 
+    - if it does not work:
+        - python -m venv env
+
 4. activate env folder:
     - cd env
     - cd Scripts
@@ -21,7 +24,7 @@
     - python
     - import django
     - django.__version__
-    - ^Z
+
 
 7. create new application:
     - django-admin startproject core
